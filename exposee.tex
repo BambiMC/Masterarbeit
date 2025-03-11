@@ -1,0 +1,201 @@
+\documentclass[german,exposee,master]{i1thesis}
+
+\def\theauthor{Fabian Berger, B. Sc.}
+\def\theadvisor{Prof.~Dr.-Ing. Michael Tielemann}
+\def\theexaminer{Prof.~Dr.-Ing. Michael Tielemann}
+\def\thetitle{Sicherheitsrisiken und Schutzmechanismen von LLMs: Angriffsmöglichkeiten, Compliance und Qualitätsbewertung}
+\def\theplace{Erlangen}
+\def\thedate{25.02.2025}
+
+\begin{document}
+
+\makethetitle\
+
+\section{Motivation}\label{sec:motivation}
+% Warum wird diese Arbeit die interessanteste und relevanteste der letzten Jahre?
+
+Large Language Models (LLMs) haben in den letzten Jahren eine rasante Entwicklung erfahren. 
+Die Modelle sind in der Lage, komplexe Sprachaufgaben zu lösen und menschenähnliche Texte zu generieren. 
+Ihr Einsatz reicht von der Automatisierung von Kundeninteraktionen über die Unterstützung wissenschaftlicher Forschung bis hin zur Erkennung von Mustern in großen Datenmengen. 
+Unternehmen und Forschungseinrichtungen nutzen LLMs, um ihre Produktivität zu steigern und neue Anwendungsfelder zu erschließen.
+
+Mit der zunehmenden Verbreitung von LLMs wachsen jedoch auch die sicherheitsrelevanten Herausforderungen. 
+Die Sprachmodelle können potenziell anfällig für verschiedene Angriffstechniken sein, 
+sowohl während der Trainingsphase als auch bei der Inferenz. 
+Dies stellt Forschungseinrichtungen und Unternehmen vor die Aufgabe, LLMs hinsichtlich ihrer Sicherheit zu bewerten und geeignete Schutzmaßnahmen zu implementieren.
+
+
+
+Trotz dieser Herausforderungen können LLMs richtig eingesetzt Vorteile in sicherheitskritischen Anwendungen bieten. 
+Einige vielversprechende Anwendungsfälle, in denen LLMs innovative Lösungen liefern können, sind \textit{Intrusion Detection}, \textit{Phishing-} und \textit{Spam-Detection}, sowie \textit{Software Vulnerability Detection}~\cite{ferrag2025}.
+
+% \begin{itemize}
+%     Intrusion Detection: Erkennung von Eindringversuchen in IT-Systeme durch Mustererkennung in Netzwerkverkehrsdaten.
+%     % Malware-Klassifikation: Identifikation und Kategorisierung von Schadsoftware basierend auf Code- und Verhaltensanalysen.
+%     % Design Verification: Automatische Überprüfung von Software- und Hardware-Designs auf Sicherheitslücken und Fehler.
+%     Phishing- und Spam-Erkennung: Verbesserung der Filtermechanismen durch intelligente Textanalyse zur Erkennung betrügerischer Nachrichten.
+%     Software Vulnerability Detection: Automatisierte Identifikation von Schwachstellen in Softwarecode, um Sicherheitsrisiken frühzeitig zu erkennen~\cite{ferrag2025}.
+% \end{itemize}
+% Es gibt auch erste Plattformen, die LLMs zur Generierung automatisierter Penetrationstests einsetzen. 
+
+Diese Ansätze zeigen das Potenzial von LLMs nicht nur als Angriffsziel, 
+sondern auch als Werkzeug zur Verbesserung der Cybersicherheit genutzt zu werden~\cite{xu2024}.
+
+Die Relevanz dieser Arbeit liegt darin, einen fundierten Beitrag zur Sicherheitsbewertung von LLMs zu leisten. 
+Durch die systematische Analyse von Schwachstellen, die Entwicklung geeigneter Schutzmaßnahmen und die Bewertung bestehender Modelle soll diese Forschung dazu beitragen, 
+den sicheren und verantwortungsvollen Einsatz von LLMs zu gewährleisten.
+
+
+\section{Problemstellung}\label{sec:problemstellung}
+% Was genau ist das Problem, das gelöst werden soll? Was ist die Aufgabe,
+% wo ist etwas zu tun?
+
+Mit den zunehmenden Fähigkeiten von LLMs wachsen auch die damit verbundenen Sicherheitsrisiken. 
+Wie das Open Web Application Security Project (OWASP) in seinem Bericht \textit{OWASP Top 10 for LLM Applications}~\cite{owasp2023} feststellt, 
+ergeben sich neue Angriffsvektoren, die gezielt ausgenutzt werden können. 
+Dazu gehören Angriffsvektoren wie \textit{Prompt Injection}, \textit{Adversarial Attacks} und \textit{Side-Channel Exploits}, 
+die Datenschutzverletzungen oder den Missbrauch der Modelle begünstigen können.~\cite{ferrag2025, hassanin2024}
+
+Ein zentrales Problem ist die Möglichkeit, Sicherheitsmechanismen von LLMs zu umgehen. 
+Insbesondere \textit{Jailbreaking} ist eine weit verbreitete Methode, 
+um mithilfe von bestimmten Eingaben die internen Sicherheitsvorkehrungen des Modells außer Kraft zu setzen~\cite{yao2024}. 
+Dadurch können Modelle dazu gebracht werden, ethisch bedenkliche oder sicherheitskritische Inhalte auszugeben, die unter normalen Umständen blockiert wären. 
+Zusätzlich gibt es eine Vielzahl von LLMs, die von vornherein ohne Sicherheitsmaßnahmen zur Verfügung stehen. 
+Diese Modelle können direkt für kriminelle oder unethische Zwecke missbraucht werden, etwa zur Generierung von Phishing-Inhalten.~\cite{owasp2023}
+
+Neben direkten Angriffen auf Modelle existieren auch weitergehende Bedrohungen auf Systemebene. 
+Side-Channel-Angriffe könnten eine Möglichkeit darstellen, um sensible Informationen aus LLMs zu extrahieren.
+Dabei werden durch die Analyse von Systemkomponenten private Informationen mit einer höheren Erfolgsrate extrahiert als durch direkte Modellabfragen~\cite{yao2024}. 
+Solche Angriffe nutzen beispielsweise Speicherzugriffe oder Laufzeitanalysen, um vertrauliche Daten zu gewinnen.
+
+Ein weiterer wichtiger Aspekt ist die Einhaltung regulatorischer Vorgaben. 
+Die Bayern KI-Richtlinie und weitere Datenschutzrichtlinien wie die DSGVO oder die KI-Verordnung der EU
+setzen grundsätzliche Anforderungen und Regelungen an den sicheren und verantwortungsvollen Umgang mit Künstlicher Intelligenz~\cite{EU_Regulation_2024_1689, DSGVO, Bayern_KI_Richtlinie}.
+Die Entwicklung robuster Sicherheitsmechanismen ist daher nicht nur aus technischer, sondern auch aus regulatorischer Sicht von hoher Relevanz.
+
+Um diesen Herausforderungen zu begegnen, ist es notwendig sowohl technische Sicherheitsmechanismen, 
+als auch regulatorische Anforderungen zu analysieren und praktikable Abwehrstrategien zu entwickeln. 
+Dazu gehören robuste Modell- und Trainingsarchitekturen, sowie integrierte Sicherheitsvorkehrungen.~\cite{yao2024}
+
+
+% \section{Verwandte Arbeiten}
+% \label{sec:verwandtearbeiten}
+
+% \textbf{A Comprehensive Overview of Large Language Models (LLMs) for Cyber Defences: Opportunities and Directions}~\cite{hassanin2024}
+
+% \textbf{AutoAttacker: A Large Language Model Guided System to Implement Automatic Cyber-attacks}~\cite{xu2024}
+
+% \textbf{When LLMs Meet Cybersecurity: A Systematic Literature Review}~\cite{zhang2024}
+
+% \textbf{Generative AI in Cybersecurity: A Comprehensive Review of LLM Applications and Vulnerabilities}~\cite{ferrag2025}
+
+% \textbf{Large Language Models for Cyber Security: A Systematic Literature Review}~\cite{xu2024_overview}
+
+% \textbf{A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly}~\cite{yao2024}
+
+% \textbf{A Review of Advancements and Applications of Pre-Trained Language Models in Cybersecurity}~\cite{liu2024}
+
+
+% Noch mehr:
+% \url{https://www.connectedpapers.com/main/383c598625110e0a4c60da4db10a838ef822fbcf/A-Survey-on-Large-Language-Model-(LLM)-Security-and-Privacy%3A-The-Good%2C-the-Bad%2C-and-the-Ugly/graph}
+
+
+% % Welche bestehenden Arbeiten beschäftigen sich mit dem gleichen oder einem
+% % ähnlichen Thema? Wie unterscheiden sie sich von diesem Thema?
+
+\section{Konkrete Ziele}\label{sec:konkreteziele}
+
+Diese Arbeit setzt sich zum Ziel, bestehende Schwachstellen systematisch zu identifizieren, 
+geeignete Gegenmaßnahmen zu evaluieren und eine strukturierte Methodik zur Sicherheitsbewertung von LLMs zu entwickeln.
+
+% Diese Arbeit untersucht, 
+% welche Modelle besonders anfällig für Sicherheitsrisiken sind und welche Abwehrmechanismen existieren. 
+Dabei werden sowohl technische Angriffsmöglichkeiten als auch regulatorische Anforderungen betrachtet. 
+Es soll eine Qualitätsbewertung verschiedener Modelle erfolgen, um diejenigen zu identifizieren, 
+die gut gegen die identifizierten Bedrohungen gewappnet sind. 
+Zudem wird eine mögliche Entwicklung eines Webinterfaces zur Durchführung von Sicherheitsexperimenten in Betracht gezogen.
+
+Zur systematischen Bewertung der Sicherheitsaspekte wird ein Bewertungsansatz für die Sicherheitsprüfung von LLMs entwickelt. 
+Dieser Ansatz soll als Grundlage für die Evaluierung unterschiedlicher Modelle dienen und mögliche Sicherheitslücken aufzeigen.
+
+% Wie _genau_ ist geplant, die Arbeit anzugehen? Welche Einzelschritte sind zu tun?
+
+% Analyse von Angriffsmöglichkeiten auf LLMs, insbesondere:
+
+% Keylogging und Tastaturanschlagsüberwachung
+
+% Manipulation durch genderbezogene Queries
+
+% Extraktion sensibler Daten
+
+% Untersuchung der Einhaltung von Compliance-Vorgaben und regulatorischen Anforderungen (z. B. Bayern KI-Richtlinie).
+
+% Identifikation von besonders anfälligen Modellen und deren Schwachstellen.
+
+% Entwicklung eines Bewertungsansatzes zur Sicherheitsprüfung von LLMs.
+
+% Potenzielle Implementierung eines Webinterfaces für Sicherheitstests.
+
+% Integration eines Pre-Processing-Schritts zur Vermeidung der Verarbeitung personenbezogener Daten in Queries.
+
+% Entwicklung / Evaluierung eines guten Frontends für die Bereitstellung der Modelle.
+
+
+
+% Das Hauptziel dieser Arbeit besteht in der systematischen Analyse von Sicherheitsrisiken bei Large Language Models (LLMs) und der Entwicklung geeigneter Bewertungsmethoden zur Sicherheitsprüfung. 
+% Dazu werden verschiedene Aspekte der Sicherheit betrachtet, einschließlich technischer Angriffsmöglichkeiten, regulatorischer Anforderungen und potenzieller Abwehrmechanismen.
+
+% Ein zentraler Bestandteil der Untersuchung ist die Identifikation spezifischer Angriffsszenarien auf LLMs. Insbesondere werden folgende Angriffsvektoren analysiert:
+
+% \begin{itemize}
+%     \item Keylogging und Tastaturanschlagsüberwachung: Untersuchung der Möglichkeit, Nutzereingaben in Form von Tastaturanschlägen durch das Modell ungewollt zu erfassen oder zu reproduzieren.
+%     \item Manipulation durch genderbezogene Queries: Analyse, ob und in welchem Umfang Modelle auf genderbezogene Eingaben reagieren und ob hierdurch mögliche Verzerrungen oder Diskriminierungen entstehen.
+%     \item Extraktion sensibler Daten: Bewertung der Gefahr, dass vertrauliche oder personenbezogene Informationen aus dem Modell extrahiert werden können, insbesondere im Kontext von Trainingsdaten-Leaks.
+% \end{itemize}
+        
+
+% Neben technischen Risiken wird auch die Einhaltung von regulatorischen Anforderungen untersucht. 
+% Dazu gehört insbesondere die Analyse von Compliance-Vorgaben, beispielsweise durch die Bayern-KI-Richtlinie oder andere einschlägige Datenschutz- und Sicherheitsstandards.
+
+% Ein weiteres Ziel ist die Identifikation von besonders anfälligen Modellen und deren Schwachstellen. 
+% Durch eine systematische Sicherheitsbewertung sollen Modelle klassifiziert werden, um festzustellen, welche LLMs besser gegen potenzielle Bedrohungen geschützt sind.
+
+
+
+% Zusätzlich wird die potenzielle Implementierung eines Webinterfaces für Sicherheitstests in Betracht gezogen. 
+% Ein solches Interface könnte die Durchführung und Dokumentation von Sicherheitsexperimenten erleichtern. 
+% Dabei wird geprüft, welche technischen Anforderungen ein solches System erfüllen müsste und inwieweit es praktikabel umsetzbar ist.
+
+% Ein weiterer wichtiger Aspekt ist die Integration eines Pre-Processing-Schritts zur Vermeidung der Verarbeitung personenbezogener Daten in Anfragen an das Modell. 
+% Dies könnte durch Filtermechanismen oder Anonymisierungstechniken realisiert werden, um Datenschutzrisiken zu minimieren.
+
+\section{Projektplan}\label{sec:projektplan}
+
+% \begin{description}
+% \item[Monat 0] Recherche zu LLM-Sicherheitsrisiken und Angriffsmethoden, Analyse relevanter regulatorischer Dokumente.
+% \item[Monat 1] Untersuchung der Einhaltung von Compliance-Vorgaben, insbesondere Bayern KI-Richtlinie.
+% \item[Monat 2] Identifikation besonders anfälliger Modelle und Schwachstellenanalyse.
+% \item[Monat 3] Konzept und ggf. Implementierung eines Webinterfaces für Sicherheitsexperimente.
+% \item[Monat 4] Entwicklung eines Bewertungsmodells zur Sicherheitsprüfung von LLMs.
+% \item[Monat 5] Integration eines Pre-Processing-Schritts zur anonymisierten Query-Verarbeitung.
+% \item[Monat 6] Zusammenfassung der Ergebnisse, Diskussion und Ausblick.
+% \end{description}
+
+\begin{description}
+    \item[Monat 1] Vertiefte Literaturrecherche und Identifikation relevanter Sicherheitsrisiken und Angriffsmethoden.
+    
+    \item[Monat 2] Umsetzung einer Sicherheitsbewertungs-Metrik und Planung der experimentellen Analyse.
+    
+    \item[Monat 3] Durchführung experimenteller Angriffe und Evaluierung bestehender Schutzmaßnahmen.
+    
+    \item[Monat 4] Umsetzung einer Sicherheitsbewertungs-Metrik und Einordnung von Modellen.
+    
+    \item[Monat 5] Finalisierung der inhaltlichen Analyse, Integration regulatorischer Aspekte und Schreiben der Hauptergebnisse.
+    
+    \item[Monat 6] Fertigstellung der Masterarbeit und Vorbereitung auf die Verteidigung.
+    \end{description}
+
+\printbibliography\
+
+\end{document}
+

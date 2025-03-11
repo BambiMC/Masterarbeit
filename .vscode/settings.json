@@ -1,0 +1,13 @@
+{
+  "workbench.iconTheme": "eq-material-theme-icons-darker",
+
+  "ltex.language": "de-DE",
+  "latex-workshop.message.badbox.show": false,
+  "files.exclude": {
+    "*/.aux": true,
+    "*/.fls": true,
+    "*/.out": true,
+    "*/.synctex.gz": true,
+    "*/.fdb_latexmk": true
+  }
+}

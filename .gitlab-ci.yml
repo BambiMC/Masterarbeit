@@ -1,0 +1,12 @@
+stages:
+  - build
+
+build:
+  stage: build
+  image: faui1-gitlab.cs.fau.de:5050/andreas.hammer/lateximage
+  script:
+    - make
+
+  artifacts:
+    paths:
+      - "report.pdf"

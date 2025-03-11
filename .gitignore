@@ -1,0 +1,20 @@
+#PLEASE ADD YOUR PDF filename here if you changed it!
+*.nav
+*.snm
+*.xdv
+*.vrb
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.bbl
+*.run.xml
+*.bcf
+*.blg
+*.synctex.gz
+thesis.pdf
+exposee.pdf
+report.pdf
+*.zip
