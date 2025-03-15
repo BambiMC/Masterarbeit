@@ -1,0 +1,217 @@
+Gute Links:
+\url{https://www.promptfoo.dev/blog/how-to-jailbreak-llms/}
+\url{https://www.br.de/nachrichten/meldung/russland-manipuliert-laut-studie-westliche-chatbots-fuer-propaganda,300710b13}
+
+% chktex-file 44
+% chktex-file 8
+% chktex-file 24
+% chktex-file 13
+% chktex-file 29
+% chktex-file 31
+
+\documentclass[german,report]{i1thesis}
+
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath}
+\usepackage{biblatex}
+\usepackage{pgfplots}
+\usepackage{acronym}
+
+
+\def\theauthor{Fabian Berger, B. Sc.}
+\def\theadvisor{Prof.\ Dr.-Ing. Michael Tielemann}
+
+% Es ist möglich mehrere Autoren, Betreuer oder Prüfer einzutragen:
+%\def\theadvisor{Some guy, M.Sc., \\ & Some other guy, M.Sc}s
+% Wenn gendergerechte Sprache gewünscht ist bzw. bei Autor/Prüfer ein Plural 
+% gebraucht wird, lässt sich das Keyword so anpassen:
+%\def\textadvisor{Betreuende}
+
+\def\theexaminer{Prof.\ Dr.-Ing. Michael Tielemann}
+\def\thetitle{Evaluierung eines Chatbots zur Verbesserung der Informationssicherheit an der FAU\@ Lokale Modelle, Plattformvergleich und Integrationsmöglichkeiten}
+\def\theplace{Erlangen}
+\def\thedate{\today}
+
+% Diese Befehle ändern das jeweilige Keyword auf der Hauptseite
+%\def\germanAuthor{Autor}
+%\def\germanBetreuer{Betreuer}
+%\def\germanPruefer{Prüfer}
+
+
+\begin{document}
+
+\makethetitle%
+
+\maketoc%
+
+\newpage
+\section{Einleitung}
+\label{sec:einleitung}
+
+
+\section{Problemstellung}
+\label{sec:problemstellung}
+
+
+\subsection{Thematischer Schwerpunkt}
+\label{subsec:thematischer-schwerpunkt}
+
+
+\section{Zielsetzung}
+\label{sec:zielsetzung}
+
+%----------------------------------
+
+% laut bdsem:
+% verwandte arbeiten
+% Konzept/auswahlmethodik
+% grundlegende kompressionstechniken
+% \dots
+% Zusammenführung der Ergebnisse
+% Evaluation
+% SCHLUSS
+% Zusammenfassung
+% Zukünftige Arbeiten / Ausblick
+
+\section{Vergleich unterschiedlicher Ansätze zur Umsetzung}
+\label{sec:vergleich}
+
+\subsection{Mögliche Betriebsarten des Systems}
+
+
+
+
+\subsection{Einführung in große Sprachmodelle (LLM)}
+
+\subsubsection{Grundlagen der Sprachmodelle}
+
+
+\subsubsection{Architektur der Sprachmodelle}
+
+
+\subsubsection{Anwendungen der Sprachmodelle}
+
+
+
+\section{Formale Evaluation der Systeme}%
+\label{sec:formale-evaluation}
+
+
+
+
+\section{Anpassung der Systeme auf den Anwendungszweck}%
+\label{sec:anpassungen-systeme}
+\subsection{Finetuning}%
+\label{subsec:Finetuning-cloud}
+
+
+
+
+\subsubsection{Finetuning Prozess}%
+\label{subsec:Finetuning-prozess}
+
+
+
+\subsubsection{Erklärung der verwendeten Techniken}%
+
+
+
+\subsubsection{Erklärung des Training-Prozesses}%
+\label{subsec:training-prozess}
+
+
+
+\subsubsection{Durchführung der Tests}%
+\label{subsec:durchfuehrung-der-tests}
+
+\subsubsection{Analyse der gegebenen Antworten}%
+\label{subsec:Analyse der gegebenen Antworten}
+
+\subsection{Retrieval Augmented Generation (RAG)}%
+\label{subsec:rag}
+
+
+
+
+\subsubsection{RAG-Algorithmus}%
+\label{subsec:rag-alg}
+
+\subsubsection{Durchführung der Tests}%
+\label{subsec:durchfuehrung-der-tests-rag}
+
+
+\subsubsection{Analyse der gegebenen Antworten}%
+\label{subsec:analyse-der-gegebenen-antworten-rag}
+
+
+
+\section{Zukünftige Arbeiten}%
+\label{sec:zukuenftige-arbeiten}
+
+\subsection{Verbesserung des aktuellen Ansatzes}%
+\label{subsec:verb}
+
+\subsection{Kombinierte Ansätze}
+
+
+\subsection{Hawki}%
+\label{subsec:hawki}
+
+\section{Zusammenfassung}%
+\label{sec:zusammenfassung}
+
+
+\newpage
+
+\begin{center}
+    \section*{Abkürzungsverzeichnis}
+\end{center}
+
+\begin{center}
+    \begin{acronym}[FAU] % Optionale Argument: längste Abkürzung für richtige Ausrichtung
+        \acro{FAU}{Friedrich-Alexander-Universität Erlangen-Nürnberg}
+        \acro{LLM}{Large Language Model}
+        \acro{GPU}{Graphics Processing Unit}
+        \acro{CPU}{Central Processing Unit}
+        \acro{QLoRA}{Quantized Low-Rank Adaptation}
+        \acro{LoRA}{Low-Rank Adaptation}
+        \acro{PEFT}{Parameter-Efficient Finetuning}
+        \acro{RAG}{Retrieval Augmented Generation}
+        \acro{CUDA}{Compute Unified Device Architecture}
+        \acro{ROCm}{Radeon Open Compute}
+        \acro{VRAM}{Video Random Access Memory}
+        \acro{SFT}{Supervised Finetuning}
+        \acro{SFTTrainer}{Supervised Finetuning-Trainer}
+        \acro{MLC LLM}{Machine Learning Compilation}
+        \acro{RAM}{Random Access Memory}
+        \acro{iGPU}{Integrated Graphics Processing Unit}
+        \acro{dGPU}{Dedicated Graphics Processing Unit}
+        \acro{JSONL}{JavaScript Object Notation Lines}
+        \acro{DP}{DataParallel}
+        \acro{DDP}{DistributedDataParallel}
+        \acro{GIL}{Global Interpreter Lock}
+        \acro{HPC}{High Performance Computing}
+        \acro{NPP}{Naive Pipeline Parallelism}
+        \acro{GB}{Gigabyte}
+        \acro{MHz}{Megahertz}
+        \acro{API}{Application Programming Interface}
+        \acro{FP16}{Half-precision floating-point format}
+        \acro{FP32}{Single-precision floating-point format}
+        \acro{FP64}{Double-precision floating-point format}
+        \acro{BF16}{bfloat16 floating-point format}
+        % \acro{}{}
+
+
+    \end{acronym}
+\end{center}
+
+\newpage
+\makebib%
+
+% TODO urldate
+% TODO hat jedes Diagramm, Grafik auch eine Unterschrift?
+% TODO Alle Probleme fixen
+% TODO noch Seitenumbrüche einbauen
+
+\end{document}
+
